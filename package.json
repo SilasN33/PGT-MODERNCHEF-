@@ -1,0 +1,22 @@
+{
+  "name": "pgt-modernchef",
+  "version": "1.0.0",
+  "description": "Repositório voltado ao PGT do curso de Sistemas de Informação na ESPM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroZotelli/PGT-ModernChef.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroZotelli/PGT-ModernChef/issues"
+  },
+  "homepage": "https://github.com/PedroZotelli/PGT-ModernChef#readme",
+  "dependencies": {
+    "react-icons": "^5.1.0"
+  }
+}

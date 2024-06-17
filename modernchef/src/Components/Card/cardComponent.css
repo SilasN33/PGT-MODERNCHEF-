@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+
+.recipe-card {
+  flex: 0 0 calc(50% - 30px);
+  margin-right: 15px;
+  margin-bottom: 30px;
+}
+
+.highlight-card {
+  flex: 0 0 calc(45% - 20px);
+  margin-right: 20px;
+}
+.custom-highlight-card {
+  height: 100%;
+}
+
+.card-img-left {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 165, 0, 0.9);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.card-overlay .btn-custom {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  margin-top: 20px;
+  background-color: #fb7500;
+}
+
+.custom-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Sora', sans-serif;
+  overflow: hidden;
+}
+
+.btn-custom {
+  background-color: #FCA311;
+  border: none;
+  color: white;
+  margin-top: 50px;
+}
+
+.btn-custom:hover {
+  background-color: #fb7500;
+  border-color: #fb8c00;
+}
+
+.highlight-button {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-overlay .btn-custom {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .recipe-card, .highlight-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 15px 0;
+  }
+
+  .filter-button {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+  }
+}
+
+.custom-card .card-body .card-text {
+  margin-bottom: 28px;
+}

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+
+.fruit {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Sora', sans-serif;
+  border-radius: 16px;
+  background: white;
+  color: #333;
+}
+
+.fruit h2 {
+  font-weight: 600;
+  color: black;
+}
+
+.fruit button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #FCA311;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.fruit button:hover {
+  background-color: #fb8c00;
+}
+
+.fruit-details {
+  text-align: left;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+.fruit-details h2 {
+  color: black;
+  font-weight: 500;
+}
+
+.fruit-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.fruit-details ul li {
+  background-color: #f8f8f8;
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.fruit-details p {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}

@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #f8f9fa; /* Cor de fundo da navbar */
+  }
+  
+  .navbar-brand img {
+    margin-right: 10px; /* Espaço entre a logo e o texto */
+  }
+  
+  .navbar-brand {
+    font-weight: bold; /* Estilo da fonte da marca */
+  }
+  
+  .nav-link {
+    color: #333; /* Cor do texto dos links */
+    font-weight: 500; /* Estilo da fonte dos links */
+  }
+  
+  .nav-link:hover {
+    text-decoration: none;
+    color: #007bff; /* Cor do texto dos links ao passar o mouse */
+  }
