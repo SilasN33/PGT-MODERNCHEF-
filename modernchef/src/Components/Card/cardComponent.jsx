@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
-import RecipeComponent from "../Recipe/recipeComponent";
 import FrutaComponent from "../Fruta/frutaComponent";
 import "./cardComponent.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Cards({ recipe, type }) {
   const [show, setShow] = useState(false);
   const [showFruit, setShowFruit] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
   const handleCloseFruit = () => setShowFruit(false);
   const handleShowFruit = () => setShowFruit(true);
+
+  const toggleLike = () => setLiked(!liked);
 
   const renderRecipeCard = () => (
     <div className="recipe-card">
@@ -29,21 +32,49 @@ function Cards({ recipe, type }) {
           </div>
           <div className="col-md-8">
             <Card.Body>
-              <Card.Title>{recipe.nome}</Card.Title>
-              <Card.Text>Ingredientes: {recipe.ingredientes.map(i => `${i.nome} - ${i.quantidade}`).join(', ')}</Card.Text>
-              <Card.Text>Modo de Preparo: {recipe.modo_preparo.join(', ')}</Card.Text>
-              <Card.Text>Porções: {recipe.porcoes}</Card.Text>
-              <Card.Text>Calorias: {recipe.calorias}</Card.Text>
-              <Card.Text>Tipo: {recipe.tipo}</Card.Text>
-              <Button variant="custom" onClick={handleShow}>
-                Ver Receita e Nutrientes
-              </Button>
+              <Card.Title className="card-title">{recipe.nome}</Card.Title>
+              <div className="recipe-info">
+                <div>
+                  <strong>{recipe.calorias}</strong>
+                  <p>Calorias</p>
+                </div>
+                <div>
+                  <strong>{recipe.porcoes}</strong>
+                  <p>Porções</p>
+                </div>
+                <div>
+                  <strong>{recipe.tipo}</strong>
+                  <p>Tipo</p>
+                </div>
+              </div>
+              <div className="button-container">
+                <Button variant="custom" onClick={handleShow}>
+                  Ver Receita e Nutrientes
+                </Button>
+              </div>
+              <div className="like-container" onClick={toggleLike}>
+                <i className={`fas ${liked ? 'fa-heart like-icon' : 'fa-heart unliked-icon'}`}></i>
+              </div>
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Detalhes da Receita</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <RecipeComponent />
+                  <h5>Ingredientes:</h5>
+                  <ul>
+                    {recipe.ingredientes.map((ingrediente, index) => (
+                      <li key={index}>{ingrediente.nome} - {ingrediente.quantidade}</li>
+                    ))}
+                  </ul>
+                  <h5>Modo de Preparo:</h5>
+                  <ol>
+                    {recipe.modo_preparo.map((passo, index) => (
+                      <li key={index}>{passo}</li>
+                    ))}
+                  </ol>
+                  <h5>Nutrientes:</h5>
+                  <p>Calorias: {recipe.calorias}</p>
+                  {/* Adicione mais informações nutricionais aqui se necessário */}
                 </Modal.Body>
               </Modal>
             </Card.Body>

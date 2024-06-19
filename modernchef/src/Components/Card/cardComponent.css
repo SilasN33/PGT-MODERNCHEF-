@@ -91,3 +91,55 @@
 .custom-card .card-body .card-text {
   margin-bottom: 28px;
 }
+
+.recipe-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.recipe-info div {
+  text-align: center;
+}
+
+.recipe-info strong {
+  font-size: 1.5em;
+}
+
+.recipe-info p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 1.75em;
+  margin-bottom: 40px;
+}
+
+.like-container {
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+}
+
+.like-icon {
+  font-size: 1.5em;
+  color: red;
+}
+
+.unliked-icon {
+  color: grey;
+}
+
+.custom-card {
+  position: relative;
+}
+
+.button-container {
+  display: flex;
+  justify-content: left;
+  margin-left: 50px;
+}
