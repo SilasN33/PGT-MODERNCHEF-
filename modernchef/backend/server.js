@@ -9,7 +9,7 @@ const PORT = 5000; // Certifique-se de que a porta está correta
 app.use(cors()); // Ativa o CORS
 app.use(express.json());
 
-const uri = 'mongodb+srv://teste:1234@cluster0.qnbvwjt.mongodb.net/receita2?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://teste:1234@cluster0.qnbvwjt.mongodb.net/receita_final?retryWrites=true&w=majority';
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))

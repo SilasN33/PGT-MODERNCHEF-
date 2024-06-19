@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Cards from '../Card/cardComponent';
 import SearchbarComponent from '../SearchBar/searchbarComponent';
 import "./homeComponent.css";
 
 const Home = () => {
-  const recipeData = [
-    {
-      title: "Salada de frutas com amêndoas",
-      description: "Banana, maçã, laranja, morango, manga, e um toque de hortelã. Fresquinha e suculenta!",
-      time: "15 minutos",
-      serves: "Serve 2 pessoas",
-      imgSrc: "../Assets/imagem_fundo_login.png"
-    },
-    {
-      title: "Churrasco Dietético com Verduras",
-      description: "Uma descrição para o churrasco dietético...",
-      time: "30 minutos",
-      serves: "Serve 4 pessoas",
-      imgSrc: "https://s2-redeglobo.glbimg.com/nuTa0sOZZ-hoALspr80pbseh5-s=/0x0:2000x1333/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2021/e/O/FcOCQqScGCmqLBxcssww/condor-12.jpg"
-    }
-  ];
+  const [recipeData, setRecipeData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/receitas');
+        setRecipeData(response.data);
+        setFilteredData(response.data);
+      } catch (error) {
+        console.error('Error fetching recipes:', error);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
+  const handleSearch = (query) => {
+    const lowercasedQuery = query.toLowerCase();
+    const filtered = recipeData.filter(recipe =>
+      recipe.nome.toLowerCase().includes(lowercasedQuery) ||
+      recipe.ingredientes.some(ingrediente =>
+        ingrediente.nome.toLowerCase().includes(lowercasedQuery)
+      )
+    );
+    setFilteredData(filtered);
+  };
 
   return (
     <div className='home-page'>
@@ -28,16 +40,17 @@ const Home = () => {
           Veja <b>receitas saudáveis</b> para tornar o seu dia a dia mais nutritivo!
         </h1>
         <div className="search-bar-wrapper">
-          <SearchbarComponent />
+          <SearchbarComponent onSearch={handleSearch} />
         </div>
         <button className="filter-button">Filtrar por: Mais populares</button>
       </header>
-      <main>
-        <div className="cards-layout">
-          <Cards recipe={recipeData[0]} type="recipe" />
-          <Cards type="fruit" />
+      <main className="cards-layout">
+        <div className="cards-column">
+          {filteredData.map(recipe => (
+            <Cards key={recipe._id} recipe={recipe} type="recipe" />
+          ))}
         </div>
-        {/* Outros cards de receitas aqui */}
+        <Cards type="fruit" />
       </main>
     </div>
   );
