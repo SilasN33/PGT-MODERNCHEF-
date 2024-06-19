@@ -23,18 +23,18 @@ function Cards({ recipe, type }) {
           <div className="col-md-4">
             <Card.Img
               variant="top"
-              src={require("../Assets/imagem_fundo_login.png")}
+              src={`data:image/jpeg;base64,${recipe.imagem.data}`}
               className="card-img-left"
             />
           </div>
           <div className="col-md-8">
             <Card.Body>
-              <Card.Title>{recipe.title}</Card.Title>
-              <Card.Text>{recipe.description}</Card.Text>
-              <div className="card-info">
-                <Card.Text>{recipe.serves}</Card.Text>
-                <Card.Text>{recipe.time}</Card.Text>
-              </div>
+              <Card.Title>{recipe.nome}</Card.Title>
+              <Card.Text>Ingredientes: {recipe.ingredientes.map(i => `${i.nome} - ${i.quantidade}`).join(', ')}</Card.Text>
+              <Card.Text>Modo de Preparo: {recipe.modo_preparo.join(', ')}</Card.Text>
+              <Card.Text>Porções: {recipe.porcoes}</Card.Text>
+              <Card.Text>Calorias: {recipe.calorias}</Card.Text>
+              <Card.Text>Tipo: {recipe.tipo}</Card.Text>
               <Button variant="custom" onClick={handleShow}>
                 Ver Receita e Nutrientes
               </Button>
@@ -83,11 +83,7 @@ function Cards({ recipe, type }) {
   return (
     <div className="card-container">
       {type === "recipe" ? (
-        <>
-          {renderRecipeCard()}
-          {renderRecipeCard()}
-          {renderRecipeCard()}
-        </>
+        renderRecipeCard()
       ) : (
         renderHighlightCard()
       )}

@@ -20,9 +20,6 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<SignUp />} />
-        {/* Verifica se o usuário está autenticado */}
-        {/* Se sim, redireciona para a página de home */}
-        {/* Se não, redireciona para a página de login */}
         <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
