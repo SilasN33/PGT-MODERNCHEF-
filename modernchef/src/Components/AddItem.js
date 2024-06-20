@@ -3,38 +3,44 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const Card = styled.div`
-    background: #f8f9fa;
+    background: #ffffff;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
     margin: auto;
 `;
 
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 `;
 
 const Input = styled.input`
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
     font-size: 1rem;
 `;
 
 const Button = styled.button`
-    padding: 10px;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
+    border-radius: 8px;
+    background-color: #ff6600;
     color: white;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
 
     &:hover {
-        background-color: #0056b3;
+        background-color: #e65c00;
+    }
+
+    &:disabled {
+        background-color: #ff9900;
     }
 `;
 
@@ -47,6 +53,8 @@ const AddItem = () => {
     const [tipo, setTipo] = useState('');
     const [nutrientes, setNutrientes] = useState([{ nome: '', quantidade: '' }]);
     const [imagem, setImagem] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     const handleChange = (index, event, state, setState) => {
         const values = [...state];
@@ -72,6 +80,7 @@ const AddItem = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
         const formData = new FormData();
         formData.append('nome', nome);
         formData.append('calorias', calorias);
@@ -90,14 +99,18 @@ const AddItem = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            alert('Receita adicionada com sucesso');
+            setSuccess(true);
+            setTimeout(() => setSuccess(false), 3000); // Animation duration
         } catch (error) {
             console.error('Erro ao adicionar receita:', error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return (
         <Card>
+            {success && <SuccessMessage>Receita adicionada com sucesso!</SuccessMessage>}
             <Form onSubmit={handleSubmit}>
                 <Input
                     type="text"
@@ -188,10 +201,27 @@ const AddItem = () => {
                 <Button type="button" onClick={() => handleAddFields(setNutrientes, nutrientes)}>Adicionar Nutriente</Button>
 
                 <Input type="file" onChange={handleImageChange} />
-                <Button type="submit">Adicionar</Button>
+                <Button type="submit" disabled={isSubmitting}>Adicionar</Button>
             </Form>
         </Card>
     );
 };
+
+const SuccessMessage = styled.div`
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeInOut 3s forwards;
+
+    @keyframes fadeInOut {
+        0% { opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+`;
 
 export default AddItem;
