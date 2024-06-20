@@ -52,7 +52,9 @@
   background-color: #FCA311;
   border: none;
   color: white;
-  margin-top: 50px;
+  margin-top: 60px;
+  width: 400px;
+  font-size: 1.4em;
 }
 
 .btn-custom:hover {
@@ -96,7 +98,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 80px;
 }
 
 .recipe-info div {
@@ -109,14 +111,15 @@
 
 .recipe-info p {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1.3em;
   color: #666;
+  margin-top: 3px;
 }
 
 .card-title {
   text-align: center;
-  font-size: 1.75em;
-  margin-bottom: 40px;
+  font-size: 3em;
+  margin-bottom: 60px;
 }
 
 .like-container {
